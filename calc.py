@@ -16,6 +16,16 @@ def calculate(left: float, operator: str, right: float) -> float:
         return left * right
     if operator == "/":
         return left / right
+    if operator == "^":
+        try:
+            result = left ** right
+        except ZeroDivisionError:
+            raise CalculatorError("0 cannot be raised to a negative power")
+        except OverflowError:
+            raise CalculatorError("result is too large")
+        if isinstance(result, complex):
+            raise CalculatorError("result is not a real number")
+        return result
     raise CalculatorError(f"unknown operator: {operator}")
 
 
