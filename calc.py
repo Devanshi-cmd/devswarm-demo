@@ -15,6 +15,8 @@ def calculate(left: float, operator: str, right: float) -> float:
     if operator == "*":
         return left * right
     if operator == "/":
+        if right == 0:
+            raise CalculatorError("division by zero")
         return left / right
     raise CalculatorError(f"unknown operator: {operator}")
 
